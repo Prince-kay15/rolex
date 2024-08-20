@@ -1,0 +1,30 @@
+/* Existing styles from previous answer */
+
+.operator {
+    background-color: #f7f7f7;
+    font-weight: bold;
+}
+
+.operator:hover {
+    background-color: #e7e7e7;
+}
+
+.operator:active {
+    background-color: #d7d7d7;
+}
+
+/* Add a new class for percentage button */
+
+.percentage {
+    background-color: #ffcccc;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.percentage:hover {
+    background-color: #ffaaaa;
+}
+
+.percentage:active {
+    background-color: #ff8888;
+}

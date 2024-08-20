@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            border: 1px solid #000;
+            padding: 20px;
+            width: 200px;
+        }
+        .display {
+            margin-bottom: 20px;
+            width: 100%;
+            height: 30px;
+        }
+        button {
+            width: 30%;
+            height: 30px;
+            margin-bottom: 10px;
+            background-color: rgb(8, 8, 8);
+            border: none;
+            color: whitesmoke;
+        }
+        button:hover{
+            background-color: ;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input class="display" type="text" value="" disabled>
+        <button value="7">7</button>
+        <button value="8">8</button>
+        <button value="9">9</button>
+        <button value="4">4</button>
+        <button value="5">5</button>
+        <button value="6">6</button>
+        <button value="1">1</button>
+        <button value="2">2</button>
+        <button value="3">3</button>
+        <button value="0">0</button>
+        <button value="." class="decimal" disabled>.</button>
+        <button value="+">+</button>
+        <button value="-">-</button>
+        <button value="*">*</button>
+        <button value="/">/</button>
+        <button value="sqrt">sqrt</button>
+        <button value="(">(</button>
+        <button value=")">)</button>
+        <button value="sin">sin</button>
+        <button value="cos">cos</button>
+        <button value="tan">tan</button>
+        <button value="log">log</button>
+        <button value="e">e</button>
+        <button value="pi">pi</button>
+        <button value="ans">ans</button>
+        <button class="calculate" value="=">=</button>
+        <button class="clear">C</button>
+    </div>
+    <script>
+        let display = document.querySelector('.display');
+        let keys = document.querySelector('.calculator');
+        let equation = '';
+        let previousAnswer;
+
+        keys.addEventListener('click', function(e) {
+            if (e.target.tagName === 'BUTTON') {
+                let value = e.target.value;
+                if (value === 'C') {
+                    equation = '';
+                    display.value = '';
+                } else if (value === '=') {
+                    try {
+                        equation = equation.replace(/pi/g, Math.PI);
+                        equation = equation.replace(/e/g, Math.E);
+                        equation = equation.replace(/ans/g, previousAnswer);
+                        let result = eval(equation);
+                        previousAnswer = result;
+                        display.value = result;
+                        equation = '';
+                    } catch (error) {
+                        display.value = 'Error';
+                    }
+                } else if (value === 'sqrt') {
+                    equation += 'Math.sqrt(';
+                } else if (value === 'sin') {
+                    equation += 'Math.sin(';
+                } else if (value === 'cos') {
+                    equation += 'Math.cos(';
+                } else if (value === 'tan') {
+                    equation += 'Math.tan(';
+                } else if (value === 'log') {
+                    equation += 'Math.log(';
+                } else {
+                    equation += value;
+                }
+                display.value = equation;
+            }
+        });
+    </script>
+</body>
+</html>
